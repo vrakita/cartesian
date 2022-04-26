@@ -20,12 +20,13 @@ function cartesian($data) {
         
         $search = cartesian($data);
 
-        if($search) {
-            foreach($search as $s) {
-                $set[] = [$element, ...$s];
-            }
-        } else {
+        if( ! $search) {
             $set[] = [$element];
+            continue;
+        }
+
+        foreach($search as $s) {
+            $set[] = [$element, ...$s];
         }
         
     }
