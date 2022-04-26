@@ -8,19 +8,15 @@ $data = [
 
 function cartesian($data) {
 
-    $row = array_shift($data);
-
-    if( ! $row) {
+    if( ! $row = array_shift($data)) {
         return [];
     }
-    
-    $set = [];
 
     foreach($row as $element) {
         
         $search = cartesian($data);
 
-        if( ! $search) {
+        if(empty($search)) {
             $set[] = [$element];
             continue;
         }
