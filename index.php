@@ -1,11 +1,5 @@
 <?php
 
-$data = [
-    [1, 2, 3],
-    ['a', 'b', 'c'],
-    ['x', 'w', 'q'],
-];
-
 function cartesian($data) {
 
     if( ! $row = array_shift($data)) {
@@ -13,23 +7,28 @@ function cartesian($data) {
     }
 
     foreach($row as $element) {
-        
-        $search = cartesian($data);
 
-        if(empty($search)) {
+        if( ! $data) {
             $set[] = [$element];
             continue;
         }
 
-        foreach($search as $s) {
+        foreach(cartesian($data) as $s) {
             $set[] = [$element, ...$s];
         }
+
         
     }
 
     return $set;
 
 }
+
+$data = [
+    [1, 2, 3],
+    ['a', 'b', 'c'],
+    ['x', 'w', 'q'],
+];
 
 echo '<pre>';
 print_r(cartesian($data));
