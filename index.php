@@ -2,9 +2,7 @@
 
 function cartesian($data) {
 
-    if( ! $row = array_shift($data)) {
-        return [];
-    }
+    $row = array_shift($data);
 
     foreach($row as $element) {
 
