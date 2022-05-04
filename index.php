@@ -2,7 +2,8 @@
 
 function cartesian($data) {
 
-    $row = array_shift($data);
+    $row = array_shift($data) ?? [];
+    $set = [];
 
     foreach($row as $element) {
 
