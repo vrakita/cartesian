@@ -5,12 +5,11 @@ function cartesian($data) {
     $row = array_shift($data) ?? [];
     $set = [];
 
-    foreach($row as $element) {
+    if( ! $data) {
+        return array_map(fn($e) => [$e], $row);
+    }
 
-        if( ! $data) {
-            $set[] = [$element];
-            continue;
-        }
+    foreach($row as $element) {
 
         foreach(cartesian($data) as $s) {
             $set[] = [$element, ...$s];
