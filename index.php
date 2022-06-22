@@ -2,23 +2,25 @@
 
 function cartesian($data) {
 
-    $row = array_shift($data) ?? [];
-    $set = [];
+    $row    = array_shift($data);
 
-    if( ! $data) {
-        return array_map(fn($e) => [$e], $row);
-    }
+    if( ! count($data))
+        return array_map(fn($el) => [$el], $row);
+
+    $out    = [];
+    $inner  = cartesian($data);
 
     foreach($row as $element) {
 
-        foreach(cartesian($data) as $s) {
-            $set[] = [$element, ...$s];
+        foreach($inner as $i) {
+            
+            $out[] = [$element, ...$i];
+
         }
 
-        
     }
 
-    return $set;
+    return $out;
 
 }
 
